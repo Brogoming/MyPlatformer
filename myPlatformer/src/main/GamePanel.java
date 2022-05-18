@@ -101,7 +101,7 @@ public class GamePanel extends JPanel {
 				yDelta -= 5;
 				break;
 			case RIGHT:
-				xDelta += 2;
+				xDelta += 5;
 				break;
 			case DOWN:
 				yDelta += 5;
@@ -110,8 +110,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	public void updateGame() {
-
+	public void updateGame() { //updates the animation, set animation, and position
 		updateAnimationTick();
 		setAnimation();
 		updatePos();
