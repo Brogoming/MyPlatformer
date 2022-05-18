@@ -4,32 +4,31 @@ public class Game implements Runnable {
 
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
-	private Thread gameThread;
-	private final int FPS_SET = 120;
+	private Thread gameThread; //a separate thread that is ran
+	private final int FPS_SET = 120; //max frames per second
 	private final int UPS_SET = 200;
 
-	public Game() {
-
-		gamePanel = new GamePanel();
+	public Game() { //constructor - head method of the class
+		gamePanel = new GamePanel(); //needs to create the game panel before the window
 		gameWindow = new GameWindow(gamePanel);
-		gamePanel.requestFocus();
+		gamePanel.requestFocus(); //gets input focus
 		startGameLoop();
 
 	}
 
-	private void startGameLoop() {
+	private void startGameLoop() { //starts the separate thread
 		gameThread = new Thread(this);
-		gameThread.start();
+		gameThread.start(); //starts the thread
 	}
 
-	public void update() {
+	public void update() { 
 		gamePanel.updateGame();
 	}
 
 	@Override
-	public void run() {
+	public void run() { //runs a separate thread
 
-		double timePerFrame = 1000000000.0 / FPS_SET;
+		double timePerFrame = 1000000000.0 / FPS_SET; //how long each frame will last in nano-seconds
 		double timePerUpdate = 1000000000.0 / UPS_SET;
 
 		long previousTime = System.nanoTime();
@@ -41,7 +40,7 @@ public class Game implements Runnable {
 		double deltaU = 0;
 		double deltaF = 0;
 
-		while (true) {
+		while (true) { //an infinite loop that always runs
 			long currentTime = System.nanoTime();
 
 			deltaU += (currentTime - previousTime) / timePerUpdate;
@@ -60,7 +59,7 @@ public class Game implements Runnable {
 				deltaF--;
 			}
 
-			if (System.currentTimeMillis() - lastCheck >= 1000) {
+			if (System.currentTimeMillis() - lastCheck >= 1000) { //fps counter and ups counter
 				lastCheck = System.currentTimeMillis();
 				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;

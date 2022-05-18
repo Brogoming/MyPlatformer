@@ -9,8 +9,7 @@ import static utilz.Constants.Directions.*;
 public class KeyBoardInputs implements KeyListener {
 
 	private GamePanel gamePanel;
-
-	public KeyBoardInputs(GamePanel gamePanel) {
+	public KeyBoardInputs(GamePanel gamePanel) { //constructor
 		this.gamePanel = gamePanel;
 	}
 
@@ -21,7 +20,7 @@ public class KeyBoardInputs implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyCode()) {
+		switch (e.getKeyCode()) { //when we release from the key it stops the animation
 		case KeyEvent.VK_W:
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_S:
@@ -33,7 +32,7 @@ public class KeyBoardInputs implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		switch (e.getKeyCode()) {
+		switch (e.getKeyCode()) { //e. gets the key that was pressed
 		case KeyEvent.VK_W:
 			gamePanel.setDirection(UP);
 			break;

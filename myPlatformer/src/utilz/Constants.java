@@ -1,14 +1,14 @@
 package utilz;
 
-public class Constants {
-	public static class Directions {
+public class Constants { //changes animation based on player action 
+	public static class Directions { //determines what direction the player is moving based on their input
 		public static final int LEFT = 0;
 		public static final int UP = 1;
 		public static final int RIGHT = 2;
 		public static final int DOWN = 3;
 	}
 
-	public static class PlayerConstants {
+	public static class PlayerConstants { //the constants, the rows of each animation
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
 		public static final int JUMP = 2;
@@ -19,9 +19,9 @@ public class Constants {
 		public static final int ATTACK_JUMP_1 = 7;
 		public static final int ATTACK_JUMP_2 = 8;
 
-		public static int GetSpriteAmount(int player_action) {
+		public static int GetSpriteAmount(int player_action) { //returns the column of sprites used based on players action  
 			switch (player_action) {
-			case RUNNING:
+			case RUNNING: //there are 6 sprites in the running row when the player "runs"
 				return 6;
 			case IDLE:
 				return 5;
