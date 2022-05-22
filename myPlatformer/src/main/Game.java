@@ -3,6 +3,7 @@ package main;
 import java.awt.Graphics;
 
 import entities.Player;
+import levels.LevelManager;
 
 public class Game implements Runnable {
 
@@ -11,8 +12,16 @@ public class Game implements Runnable {
 	private Thread gameThread; //a separate thread that is ran
 	private final int FPS_SET = 120; //max frames per second
 	private final int UPS_SET = 200; //max updates per second
+	private Player player; //the player 
+	private LevelManager  levelManager; //has all things for the levels
 	
-	private Player player;
+	public final static int TILES_DEFAULT_SIZE = 32; //default size of our tiles
+	public final static float SCALE = 1.5f; //how much we should scale 
+	public final static int TILES_IN_WIDTH = 26; //width of the screen
+	public final static int TILES_IN_HEIGHT = 14; //height of the screen
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE); //tile size is 48
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
 	public Game() { //constructor - head method of the class
 		initClasses(); //Initializes classes like players or enemies
@@ -23,7 +32,8 @@ public class Game implements Runnable {
 	}
 
 	private void initClasses() {
-		player = new Player(200, 200);
+		player = new Player(200, 200, (int) (64 * SCALE), (int) (40*SCALE));
+		levelManager = new LevelManager(this);
 	}
 
 	private void startGameLoop() { //starts the separate thread
@@ -33,10 +43,12 @@ public class Game implements Runnable {
 
 	public void update() { //where every update goes
 		player.update();
+		levelManager.update();
 	}
 	
 	public void render(Graphics g) { //where every render goes
 		player.render(g);
+		levelManager.draw(g);
 	}
 
 	@Override

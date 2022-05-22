@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import Inputs.KeyBoardInputs; //allows the panel to access KeyBoardInputs
 import Inputs.MouseInputs; //allows the panel to access MouseInputs
 
+import static main.Game.GAME_HEIGHT; //the height of the game panel
+import static main.Game.GAME_WIDTH; //the width of the game panel
+
 public class GamePanel extends JPanel {
 
 	private MouseInputs mouseInputs;
@@ -24,8 +27,9 @@ public class GamePanel extends JPanel {
 	}
 
 	private void setPanelSize() { //sets the size of the panel we play in
-		Dimension size = new Dimension(1280, 800); //the images are 32 px big so its 40 images by 25 images
+		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT); //the images are 32 px 
 		setPreferredSize(size); //sets the size of the panel
+		System.out.println("Size : " + GAME_WIDTH + ":" + GAME_HEIGHT);
 	}
 
 	public void updateGame() { //updates the animation, set animation, and position

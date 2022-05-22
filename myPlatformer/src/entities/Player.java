@@ -10,6 +10,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import utilz.LoadSave;
+
 public class Player extends Entity{
 
 	private BufferedImage[][] animations; //animation array
@@ -18,8 +20,12 @@ public class Player extends Entity{
 	private boolean left, up, right, down; //if the player direction
 	private boolean moving = false, attacking = false; //if the player is moving or not, if the player is attacking
 	private float playerSpeed = 2.0f; //speed of the player
-	public Player(float x, float y) {
+	private float width; //width of the player
+	private float height; //height of the player
+	public Player(float x, float y, float width, float height) {
 		super(x, y);
+		this.width = width;
+		this.height = height;
 		loadAnimations();
 	}
 	
@@ -30,7 +36,7 @@ public class Player extends Entity{
 	}
 	
 	public void render(Graphics g) { //render the player
-		g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, 256, 160, null);
+		g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, (int) width, (int) height, null);
 	}
 
 	private void updateAnimationTick() { //cycles through the animation
@@ -90,25 +96,13 @@ public class Player extends Entity{
 	}
 	
 	private void loadAnimations() { //loads our animations
-		
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
-		try {
-			BufferedImage img = ImageIO.read(is);
+			BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
 			
 			animations = new BufferedImage[9][6]; //9 rows and 6 columns of animation
 			for (int j = 0; j < animations.length; j++) //row
 				for (int i = 0; i < animations[j].length; i++)
 					animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40); //gets the image from each column on row j
-		
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	
 	}
 	
 	public void resetDirBooleans() { //resets all directions as false so the player doesn't move when you are off screen
