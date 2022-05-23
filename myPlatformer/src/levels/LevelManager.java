@@ -10,14 +10,15 @@ public class LevelManager {
 	
 	private Game game;
 	private BufferedImage[] levelSprite;
+	private Level levelOne;
 	
 	public LevelManager(Game game) { //constructor
 		this.game = game;
-		//levelSprite = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		importOutsideSpriteS();
+		levelOne = new Level(LoadSave.GetLevelData());
 	}
 	
-	private void importOutsideSpriteS() {
+	private void importOutsideSpriteS() { //imports outside level sprites
 		BufferedImage image = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		levelSprite = new BufferedImage[48];
 		for(int j = 0; j < 4; j++) { //rows
@@ -29,7 +30,12 @@ public class LevelManager {
 	}
 
 	public void draw(Graphics g) {
-		g.drawImage(levelSprite[2], 0, 0, null);
+		for(int j = 0; j < Game.TILES_IN_HEIGHT; j++) { //y
+			for(int i = 0; i < Game.TILES_IN_WIDTH; i++) { //x
+				int index = levelOne.getSpriteIndex(i, j);
+				g.drawImage(levelSprite[index], Game.TILES_SIZE*i, Game.TILES_SIZE*j, Game.TILES_SIZE, Game.TILES_SIZE, null); //index, x, y, width, Height of each tile
+			}
+		}
 	}
 	
 	public void update() {

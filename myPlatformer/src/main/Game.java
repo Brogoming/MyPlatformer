@@ -47,8 +47,8 @@ public class Game implements Runnable {
 	}
 	
 	public void render(Graphics g) { //where every render goes
-		player.render(g);
-		levelManager.draw(g);
+		levelManager.draw(g); //level rendered first, so the level sprite with be behind the player
+		player.render(g); //the player render
 	}
 
 	@Override
