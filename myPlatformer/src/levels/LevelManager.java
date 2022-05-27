@@ -29,7 +29,7 @@ public class LevelManager {
 		}
 	}
 
-	public void draw(Graphics g) {
+	public void draw(Graphics g) { //draws the level
 		for(int j = 0; j < Game.TILES_IN_HEIGHT; j++) { //y
 			for(int i = 0; i < Game.TILES_IN_WIDTH; i++) { //x
 				int index = levelOne.getSpriteIndex(i, j);
@@ -41,5 +41,11 @@ public class LevelManager {
 	public void update() {
 		
 	}
+	
+	public Level getCurrentLevel() { //returns the current level data
+		return levelOne;
+	}
+	
+	
 
 }

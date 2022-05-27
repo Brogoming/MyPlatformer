@@ -16,7 +16,7 @@ public class Game implements Runnable {
 	private LevelManager  levelManager; //has all things for the levels
 	
 	public final static int TILES_DEFAULT_SIZE = 32; //default size of our tiles
-	public final static float SCALE = 1.5f; //how much we should scale 
+	public final static float SCALE = 1.0f; //how much we should scale 
 	public final static int TILES_IN_WIDTH = 26; //width of the screen
 	public final static int TILES_IN_HEIGHT = 14; //height of the screen
 	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE); //tile size is 48
@@ -31,9 +31,10 @@ public class Game implements Runnable {
 		startGameLoop(); //needs to be the last thing
 	}
 
-	private void initClasses() {
-		player = new Player(200, 200, (int) (64 * SCALE), (int) (40*SCALE));
+	private void initClasses() { //initializes the classes
 		levelManager = new LevelManager(this);
+		player = new Player(200, 200, (int) (64 * SCALE), (int) (40*SCALE));
+		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 	}
 
 	private void startGameLoop() { //starts the separate thread

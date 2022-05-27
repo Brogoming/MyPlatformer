@@ -20,23 +20,23 @@ public class Player extends Entity{
 	private boolean left, up, right, down; //if the player direction
 	private boolean moving = false, attacking = false; //if the player is moving or not, if the player is attacking
 	private float playerSpeed = 2.0f; //speed of the player
-	private float width; //width of the player
-	private float height; //height of the player
-	public Player(float x, float y, float width, float height) {
-		super(x, y);
-		this.width = width;
-		this.height = height;
+	private int[][] lvlData;
+	
+	public Player(float x, float y, int width, int height) {
+		super(x, y, width, height);
 		loadAnimations();
 	}
 	
 	public void update() { //update the player
 		updatePos();
+		updateHitBox();
 		updateAnimationTick();
 		setAnimation();
 	}
 	
 	public void render(Graphics g) { //render the player
 		g.drawImage(animations[playerAction][aniIndex], (int) x, (int) y, (int) width, (int) height, null);
+		drawHitBox(g);
 	}
 
 	private void updateAnimationTick() { //cycles through the animation
@@ -103,6 +103,10 @@ public class Player extends Entity{
 				for (int i = 0; i < animations[j].length; i++)
 					animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40); //gets the image from each column on row j
 	
+	}
+	
+	public void loadLvlData(int[][] lvlData) {
+		this.lvlData = lvlData;
 	}
 	
 	public void resetDirBooleans() { //resets all directions as false so the player doesn't move when you are off screen
