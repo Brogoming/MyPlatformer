@@ -25,5 +25,10 @@
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/Downloads/outside_sprites.png</locationURI>
 		</link>
+		<link>
+			<name>res/pixil-frame-0.png</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Downloads/pixil-frame-0%20(1).png</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>
