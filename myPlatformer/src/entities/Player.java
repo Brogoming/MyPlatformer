@@ -2,7 +2,7 @@ package entities;
 
 import static utilz.Constants.Directions.*;
 import static utilz.Constants.PlayerConstants.*;
-import static utilz.HelpMethods.CanMoveHere;
+import static utilz.HelpMethods.*;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -19,12 +19,19 @@ public class Player extends Entity{
 	private BufferedImage[][] animations; //animation array
 	private int aniTick, aniIndex, aniSpeed = 25; //the ticks per animation, the index of the animation, the speed of each animation image
 	private int playerAction = IDLE; //the default animation
-	private boolean left, up, right, down; //if the player direction
+	private boolean left, up, right, down, jump; //if the player direction
 	private boolean moving = false, attacking = false; //if the player is moving or not, if the player is attacking
 	private float playerSpeed = 2.0f; //speed of the player
 	private int[][] lvlData; //temporary 
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
+	
+	//jumping  / gravity
+	private float airSpeed = 0f; //the speed we travel through the air
+	private float gravity = 0.04f * Game.SCALE; //how fast we want the player to fall, lower the value the higher the jump
+	private float jumpSpeed = -2.25f * Game.SCALE; //how fast we rise above the ground
+	private float fSAC = 0.5f * Game.SCALE;//fall speed after collision when hitting the roof or wall
+	private boolean inAir = false;
 	
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
@@ -81,37 +88,43 @@ public class Player extends Entity{
 
 	private void updatePos() { //allows us to change position
 		moving = false; //sets moving to false as default
-		if(!left && !right && !up && !down) {
-			return;
+		if(!left && !right && !inAir) { //no moving we are standing still
+			return; 
 		}
 		
-		float xSpeed = 0, ySpeed =0;
+		float xSpeed = 0;
 		
-		if(left && !right) {
-			xSpeed = -playerSpeed;
-		} else if(right && !left) {
-			xSpeed = playerSpeed;
+		if(left) {
+			xSpeed -= playerSpeed;
+		} else if(right) {
+			xSpeed += playerSpeed;
 		}
 		
-		if(up && !down) {
-			ySpeed = -playerSpeed;
-		} else if(down && !up) {
-			ySpeed = playerSpeed;
-		}
-		
-//		if(CanMoveHere(x + xSpeed, y + ySpeed, width, height, lvlData)) {
-//			this.x += xSpeed;
-//			this.y += ySpeed;
-//			moving = true;
-//		}
-		
-		if(CanMoveHere(hitBox.x + xSpeed, hitBox.y + ySpeed, hitBox.width, hitBox.height, lvlData)) {
-			hitBox.x += xSpeed;
-			hitBox.y += ySpeed;
-			moving = true;
-		}
+		if(inAir) {
+			
+			if(CanMoveHere(hitBox.x, hitBox.y + airSpeed, hitBox.width, hitBox.height, lvlData)) {
+				hitBox.y += airSpeed;
+				airSpeed += gravity;
+				updateXPos(xSpeed);
+			} else {
+				hitBox.y = GetEnitityYPosSurface(hitBox, airSpeed);
+			}
+			
+		} else {
+			updateXPos(xSpeed);
+		}	
 	}
 	
+	private void updateXPos(float xSpeed) {
+
+		if(CanMoveHere(hitBox.x + xSpeed, hitBox.y, hitBox.width, hitBox.height, lvlData)) {
+			hitBox.x += xSpeed;
+		} else {
+			hitBox.x = GetEnitityXPosNextToWall(hitBox, xSpeed);
+		}
+		
+	}
+
 	private void loadAnimations() { //loads our animations
 			BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
 			

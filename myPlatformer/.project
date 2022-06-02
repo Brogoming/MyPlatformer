@@ -18,17 +18,12 @@
 		<link>
 			<name>res/level_one_data.png</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/level_one_data.png</locationURI>
+			<locationURI>PARENT-4-PROJECT_LOC/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/level_one_data.png</locationURI>
 		</link>
 		<link>
 			<name>res/outside_sprites.png</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/outside_sprites.png</locationURI>
-		</link>
-		<link>
-			<name>res/pixil-frame-0.png</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/pixil-frame-0%20(1).png</locationURI>
+			<locationURI>PARENT-4-PROJECT_LOC/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/outside_sprites.png</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

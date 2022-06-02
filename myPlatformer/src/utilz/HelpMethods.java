@@ -1,5 +1,7 @@
 package utilz;
 
+import java.awt.geom.Rectangle2D;
+
 import main.Game;
 
 public class HelpMethods { 
@@ -38,6 +40,30 @@ public class HelpMethods {
 			return false;
 		}
 		
+	}
+	
+	public static float GetEnitityXPosNextToWall(Rectangle2D.Float hitBox, float xSpeed) { //helps position the entity next to the wall
+		int currentTile = (int) (hitBox.x /Game.TILES_SIZE);
+		
+		if(xSpeed > 0) { //right
+			int tileXPos = currentTile * Game.TILES_SIZE;
+			int xOffSet = (int)(Game.TILES_SIZE - hitBox.width);
+			return tileXPos + xOffSet -1;
+		} else { //left
+			return currentTile * Game.TILES_SIZE;
+		}
+	}
+	
+	public static float GetEnitityYPosSurface(Rectangle2D.Float hitBox, float airSpeed) { //helps with the collision of the roof and floor detection when touched
+	int currentTile = (int) (hitBox.x /Game.TILES_SIZE);
+		
+		if(airSpeed > 0) { //falling
+			int tileYPos = currentTile * Game.TILES_SIZE;
+			int yOffSet = (int)(Game.TILES_SIZE - hitBox.height);
+			return tileYPos + yOffSet -1;
+		} else { //jumping
+			return currentTile * Game.TILES_SIZE;
+		}
 	}
 	
 }
