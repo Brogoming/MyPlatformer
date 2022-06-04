@@ -36,7 +36,8 @@ public class Player extends Entity{
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		loadAnimations();
-		initHitBox(x, y, 20 * Game.SCALE,  28 * Game.SCALE); //players hit box
+		initHitBox(x, y, 20 * Game.SCALE,  27 * Game.SCALE); //players hit box
+		
 	}
 	
 	public void update() { //update the player
@@ -47,7 +48,7 @@ public class Player extends Entity{
 	
 	public void render(Graphics g) { //render the player
 		g.drawImage(animations[playerAction][aniIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset), (int) width, (int) height, null);
-		drawHitBox(g);
+		//drawHitBox(g);
 	}
 
 	private void updateAnimationTick() { //cycles through the animation
@@ -72,6 +73,14 @@ public class Player extends Entity{
 			playerAction = IDLE;
 		}
 		
+		if(inAir) {
+			if(airSpeed < 0) {
+				playerAction = JUMP;
+			} else {
+				playerAction = FALLING;
+			}
+		}
+		
 		if(attacking) { //attack
 			playerAction = ATTACK_1;
 		}
@@ -88,6 +97,10 @@ public class Player extends Entity{
 
 	private void updatePos() { //allows us to change position
 		moving = false; //sets moving to false as default
+		
+		if(jump) {
+			jump();
+		}
 		if(!left && !right && !inAir) { //no moving we are standing still
 			return; 
 		}
@@ -100,21 +113,45 @@ public class Player extends Entity{
 			xSpeed += playerSpeed;
 		}
 		
+		if(!inAir) {
+			if(!IsEntityOnFloor(hitBox, lvlData)) {
+				inAir = true;
+			}
+		}
+		
 		if(inAir) {
-			
 			if(CanMoveHere(hitBox.x, hitBox.y + airSpeed, hitBox.width, hitBox.height, lvlData)) {
 				hitBox.y += airSpeed;
 				airSpeed += gravity;
 				updateXPos(xSpeed);
 			} else {
 				hitBox.y = GetEnitityYPosSurface(hitBox, airSpeed);
+				if(airSpeed > 0) {
+					resetInAir();
+				} else {
+					airSpeed = fSAC;
+				}
+				updateXPos(xSpeed);
 			}
-			
 		} else {
 			updateXPos(xSpeed);
 		}	
+		moving = true;
 	}
 	
+	private void jump() {
+		if(inAir) { // no double jumping
+			return;
+		}
+		inAir = true;
+		airSpeed = jumpSpeed;
+	}
+
+	private void resetInAir() {
+		inAir = false;
+		airSpeed = 0;
+	}
+
 	private void updateXPos(float xSpeed) {
 
 		if(CanMoveHere(hitBox.x + xSpeed, hitBox.y, hitBox.width, hitBox.height, lvlData)) {
@@ -137,6 +174,9 @@ public class Player extends Entity{
 	
 	public void loadLvlData(int[][] lvlData) {
 		this.lvlData = lvlData;
+		if(!IsEntityOnFloor(hitBox, lvlData)) { //should fall down as we start the game
+			inAir = true;
+		}
 	}
 	
 	public void resetDirBooleans() { //resets all directions as false so the player doesn't move when you are off screen
@@ -182,5 +222,8 @@ public class Player extends Entity{
 		this.down = down;
 	}
 	
+	public void setJump(boolean jump) {
+		this.jump = jump;
+	}
 	
 }
