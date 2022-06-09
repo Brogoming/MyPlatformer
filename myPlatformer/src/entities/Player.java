@@ -47,7 +47,7 @@ public class Player extends Entity{
 	}
 	
 	public void render(Graphics g) { //render the player
-		g.drawImage(animations[playerAction][aniIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset), (int) width, (int) height, null);
+		g.drawImage(animations[playerAction][aniIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset), width, height, null);
 		//drawHitBox(g);
 	}
 
@@ -169,7 +169,6 @@ public class Player extends Entity{
 			for (int j = 0; j < animations.length; j++) //row
 				for (int i = 0; i < animations[j].length; i++)
 					animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40); //gets the image from each column on row j
-	
 	}
 	
 	public void loadLvlData(int[][] lvlData) {

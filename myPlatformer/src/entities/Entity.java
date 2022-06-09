@@ -19,7 +19,7 @@ public abstract class Entity { //a class we can't make an object on
 	}
 	
 	protected void drawHitBox(Graphics g) { //draws the hit box around the entity
-		g.setColor(Color.PINK);
+		g.setColor(Color.PINK); // For debugging the hitbox
 		g.drawRect((int)hitBox.x, (int)hitBox.y, (int)hitBox.width, (int)hitBox.height);
 	}
 	

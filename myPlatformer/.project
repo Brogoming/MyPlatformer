@@ -18,12 +18,12 @@
 		<link>
 			<name>res/level_one_data.png</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/level_one_data.png</locationURI>
+			<location>C:/Users/kotag/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/level_one_data.png</location>
 		</link>
 		<link>
 			<name>res/outside_sprites.png</name>
 			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/outside_sprites.png</locationURI>
+			<location>C:/Users/kotag/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/outside_sprites.png</location>
 		</link>
 	</linkedResources>
 </projectDescription>

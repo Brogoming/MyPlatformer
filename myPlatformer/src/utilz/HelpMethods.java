@@ -36,10 +36,8 @@ public class HelpMethods {
 		
 		if(value >= 48 || value < 0 || value != 11) {
 			return true;
-		} else {
-			return false;
 		}
-		
+		return false;
 	}
 	
 	public static float GetEnitityXPosNextToWall(Rectangle2D.Float hitBox, float xSpeed) { //helps position the entity next to the wall

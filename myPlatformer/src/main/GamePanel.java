@@ -29,7 +29,6 @@ public class GamePanel extends JPanel {
 	private void setPanelSize() { //sets the size of the panel we play in
 		Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT); //the images are 32 px 
 		setPreferredSize(size); //sets the size of the panel
-		System.out.println("Size : " + GAME_WIDTH + ":" + GAME_HEIGHT);
 	}
 
 	public void updateGame() { //updates the animation, set animation, and position
