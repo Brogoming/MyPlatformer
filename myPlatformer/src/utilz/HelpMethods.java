@@ -6,17 +6,13 @@ import main.Game;
 
 public class HelpMethods { 
 	
-	public static boolean CanMoveHere(float x, float y,  float width, float height, int[][] lvlData) { //checking if the hit box touches the tile
+	public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) { //checking if the hit box touches the tile
 		
-		if(!IsSolid(x, y, lvlData)) { //top left
-			if(!IsSolid(x+width, y+height, lvlData)) { //bottom right
-				if(!IsSolid(x+width, y, lvlData)) { //top right
-					if(!IsSolid(x, y+height, lvlData)) { //bottom left
+		if(!IsSolid(x, y, lvlData))  //top left
+			if(!IsSolid(x+width, y+height, lvlData))  //bottom right
+				if(!IsSolid(x+width, y, lvlData))  //top right
+					if(!IsSolid(x, y+height, lvlData))  //bottom left
 						return true;
-					}
-				}
-			}
-		}
 		return false;
 	}
 	
@@ -53,7 +49,7 @@ public class HelpMethods {
 	}
 	
 	public static float GetEnitityYPosSurface(Rectangle2D.Float hitBox, float airSpeed) { //helps with the collision of the roof and floor detection when touched
-	int currentTile = (int) (hitBox.x /Game.TILES_SIZE);
+		int currentTile = (int) (hitBox.x /Game.TILES_SIZE);
 		
 		if(airSpeed > 0) { //falling
 			int tileYPos = currentTile * Game.TILES_SIZE;
@@ -66,11 +62,10 @@ public class HelpMethods {
 	
 	public static boolean IsEntityOnFloor(Rectangle2D.Float hitBox, int[][] lvlData) {
 		//check the pixel below bottom left and bottom right
-		if(!IsSolid(hitBox.x, hitBox.y + hitBox.height + 1, lvlData)) {
-			if(!IsSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, lvlData)) {
+		if(!IsSolid(hitBox.x, hitBox.y + hitBox.height + 1, lvlData)) 
+			if(!IsSolid(hitBox.x + hitBox.width, hitBox.y + hitBox.height + 1, lvlData)) 
 				return false;
-			}
-		}
+			
 		return true;
 	}
 	

@@ -1,21 +1,15 @@
 package entities;
 
-import static utilz.Constants.Directions.*;
 import static utilz.Constants.PlayerConstants.*;
 import static utilz.HelpMethods.*;
+import utilz.LoadSave;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 
 import main.Game;
-import utilz.LoadSave;
 
 public class Player extends Entity{
-
 	private BufferedImage[][] animations; //animation array
 	private int aniTick, aniIndex, aniSpeed = 25; //the ticks per animation, the index of the animation, the speed of each animation image
 	private int playerAction = IDLE; //the default animation
@@ -97,28 +91,24 @@ public class Player extends Entity{
 
 	private void updatePos() { //allows us to change position
 		moving = false; //sets moving to false as default
-		
 		if(jump) {
 			jump();
 		}
 		if(!left && !right && !inAir) { //no moving we are standing still
 			return; 
 		}
-		
 		float xSpeed = 0;
-		
-		if(left) {
+		if(left) { //goes left
 			xSpeed -= playerSpeed;
-		} else if(right) {
+		}
+		if(right) { //goes right
 			xSpeed += playerSpeed;
 		}
-		
 		if(!inAir) {
 			if(!IsEntityOnFloor(hitBox, lvlData)) {
 				inAir = true;
 			}
 		}
-		
 		if(inAir) {
 			if(CanMoveHere(hitBox.x, hitBox.y + airSpeed, hitBox.width, hitBox.height, lvlData)) {
 				hitBox.y += airSpeed;
@@ -159,7 +149,6 @@ public class Player extends Entity{
 		} else {
 			hitBox.x = GetEnitityXPosNextToWall(hitBox, xSpeed);
 		}
-		
 	}
 
 	private void loadAnimations() { //loads our animations

@@ -87,13 +87,13 @@ public class Game implements Runnable {
 				deltaF--;
 			}
 
-			if (System.currentTimeMillis() - lastCheck >= 1000) { //fps counter and ups counter
-				lastCheck = System.currentTimeMillis();
-				System.out.println("FPS: " + frames + " | UPS: " + updates);
-				frames = 0;
-				updates = 0;
-
-			}
+//			if (System.currentTimeMillis() - lastCheck >= 1000) { //fps counter and ups counter
+//				lastCheck = System.currentTimeMillis();
+//				System.out.println("FPS: " + frames + " | UPS: " + updates);
+//				frames = 0;
+//				updates = 0;
+//
+//			}
 		}
 
 	}

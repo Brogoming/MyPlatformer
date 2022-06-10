@@ -19,12 +19,12 @@ public abstract class Entity { //a class we can't make an object on
 	}
 	
 	protected void drawHitBox(Graphics g) { //draws the hit box around the entity
-		g.setColor(Color.PINK); // For debugging the hitbox
+		g.setColor(Color.PINK); 
 		g.drawRect((int)hitBox.x, (int)hitBox.y, (int)hitBox.width, (int)hitBox.height);
 	}
 	
 	protected void initHitBox(float x, float y, float width, float height) { //sets the hit box
-		hitBox = new Rectangle2D.Float(x, y, width, height);
+		hitBox = new Rectangle2D.Float((int)x, (int)y, width, height);
 	}
 	
 //	protected void updateHitBox() { //updates the position
