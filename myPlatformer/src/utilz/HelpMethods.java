@@ -26,7 +26,7 @@ public class HelpMethods {
 		}
 		
 		float xIndex = x / Game.TILES_SIZE;
-		float yIndex = x / Game.TILES_SIZE;
+		float yIndex = y / Game.TILES_SIZE;
 		
 		int value = lvlData[(int) yIndex][(int) xIndex];
 		
@@ -49,7 +49,7 @@ public class HelpMethods {
 	}
 	
 	public static float GetEnitityYPosSurface(Rectangle2D.Float hitBox, float airSpeed) { //helps with the collision of the roof and floor detection when touched
-		int currentTile = (int) (hitBox.x /Game.TILES_SIZE);
+		int currentTile = (int) (hitBox.y /Game.TILES_SIZE);
 		
 		if(airSpeed > 0) { //falling
 			int tileYPos = currentTile * Game.TILES_SIZE;
