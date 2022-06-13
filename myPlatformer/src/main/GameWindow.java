@@ -23,12 +23,12 @@ public class GameWindow {
 		jframe.addWindowFocusListener(new WindowFocusListener() { //when we lose and gain the game's focus
 
 			@Override
-			public void windowGainedFocus(WindowEvent arg0) {
+			public void windowGainedFocus(WindowEvent e) {
 				gamePanel.getGame().windowFocusLost();
 			}
 
 			@Override
-			public void windowLostFocus(WindowEvent arg0) {
+			public void windowLostFocus(WindowEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
