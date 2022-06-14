@@ -7,7 +7,7 @@ import utilz.LoadSave;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import main2.Game;
+import main.Game;
 
 public class Player extends Entity{
 	private BufferedImage[][] animations; //animation array

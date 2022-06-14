@@ -1,4 +1,4 @@
-package main2;
+package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import Inputs.KeyBoardInputs; //allows the panel to access KeyBoardInputs
 import Inputs.MouseInputs; //allows the panel to access MouseInputs
 
-import static main2.Game.GAME_HEIGHT; //the height of the game panel
-import static main2.Game.GAME_WIDTH; //the width of the game panel
+import static main.Game.GAME_HEIGHT; //the height of the game panel
+import static main.Game.GAME_WIDTH; //the width of the game panel
 
 public class GamePanel extends JPanel {
 

@@ -1,4 +1,4 @@
-package main2;
+package main;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
@@ -12,7 +12,7 @@ public class GameWindow {
 
 		jframe = new JFrame();
 		
-		jframe.setTitle("My platformer");
+		jframe.setTitle("My platformer 2");
 
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes the program when x is pressed
 		jframe.add(gamePanel); //adds the panel to the window

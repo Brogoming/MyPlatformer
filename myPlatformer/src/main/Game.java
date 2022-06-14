@@ -1,19 +1,21 @@
-package main2;
+package main;
 
 import java.awt.Graphics;
 
-import entities.Player;
-import levels.LevelManager;
+import gamestates.Gamestate;
+import gamestates.Menu;
+import gamestates.Playing;
 
-public class Game implements Runnable {
+public class Game implements Runnable { //will this work
 
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
 	private Thread gameThread; //a separate thread that is ran
 	private final int FPS_SET = 120; //max frames per second
 	private final int UPS_SET = 200; //max updates per second
-	private Player player; //the player 
-	private LevelManager  levelManager; //has all things for the levels
+	
+	private Playing playing;
+	private Menu menu;
 	
 	public final static int TILES_DEFAULT_SIZE = 32; //default size of our tiles
 	public final static float SCALE = 1.5f; //how much we should scale 
@@ -32,9 +34,10 @@ public class Game implements Runnable {
 	}
 
 	private void initClasses() { //initializes the classes
-		levelManager = new LevelManager(this);
-		player = new Player(200, 200, (int) (64 * SCALE), (int) (40*SCALE));
-		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
+		
+		menu = new Menu(this);
+		playing = new Playing(this);
+		
 	}
 
 	private void startGameLoop() { //starts the separate thread
@@ -43,13 +46,30 @@ public class Game implements Runnable {
 	}
 
 	public void update() { //where every update goes
-		levelManager.update();
-		player.update();
+		switch(Gamestate.state) {
+		case MENU:
+			menu.update();
+			break;
+		case PLAYING:
+			playing.update();
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void render(Graphics g) { //where every render goes
-		levelManager.draw(g); //level rendered first, so the level sprite with be behind the player
-		player.render(g); //the player render
+		switch(Gamestate.state) {
+		case MENU:
+			menu.draw(g);
+			break;
+		case PLAYING:
+			playing.draw(g);
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	@Override
@@ -97,13 +117,19 @@ public class Game implements Runnable {
 		}
 
 	}
-	public Player getPlayer() {
-		return player;
-	}
 
 	public void windowFocusLost() { //acts when you click out of the window
-		player.resetDirBooleans(); //resets the movement booleans
-		
+		if(Gamestate.state == Gamestate.PLAYING) {
+			playing.getPlayer().resetDirBooleans();
+		}
+	}
+	
+	public Menu getMenu() { //gets the menu
+		return menu;
+	}
+	
+	public Playing getPlaying() {
+		return playing;
 	}
 
 }
