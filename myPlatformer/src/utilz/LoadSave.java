@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import main.Game;
+import main2.Game;
 
 public class LoadSave {
 	

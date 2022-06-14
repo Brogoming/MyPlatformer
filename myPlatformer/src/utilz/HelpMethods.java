@@ -2,7 +2,7 @@ package utilz;
 
 import java.awt.geom.Rectangle2D;
 
-import main.Game;
+import main2.Game;
 
 public class HelpMethods { 
 	
