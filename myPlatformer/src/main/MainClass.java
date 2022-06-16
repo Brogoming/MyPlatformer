@@ -1,6 +1,6 @@
 package main;
 
-public class MainClass { //will this work
+public class MainClass {
 
 	public static void main(String[] args) {
 		new Game();

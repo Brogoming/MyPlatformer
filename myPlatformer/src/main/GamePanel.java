@@ -19,7 +19,6 @@ public class GamePanel extends JPanel {
 	public GamePanel(Game game) {
 		mouseInputs = new MouseInputs(this);
 		this.game = game;
-
 		setPanelSize();
 		addKeyListener(new KeyBoardInputs(this)); //looks(listens) for KeyBoardInputs
 		addMouseListener(mouseInputs); //looks(listens) for MouseInputs	

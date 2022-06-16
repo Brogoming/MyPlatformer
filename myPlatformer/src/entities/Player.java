@@ -15,7 +15,7 @@ public class Player extends Entity{
 	private int playerAction = IDLE; //the default animation
 	private boolean left, up, right, down, jump; //if the player direction
 	private boolean moving = false, attacking = false; //if the player is moving or not, if the player is attacking
-	private float playerSpeed = 2.0f; //speed of the player
+	private float playerSpeed = 1.0f * Game.SCALE; //speed of the player
 	private int[][] lvlData; //temporary 
 	private float xDrawOffset = 21 * Game.SCALE;
 	private float yDrawOffset = 4 * Game.SCALE;
@@ -30,7 +30,7 @@ public class Player extends Entity{
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		loadAnimations();
-		initHitBox(x, y, 20 * Game.SCALE,  27 * Game.SCALE); //players hit box
+		initHitBox(x, y, (int)(20 * Game.SCALE), (int)(27 * Game.SCALE)); //players hit box
 		
 	}
 	
@@ -160,7 +160,7 @@ public class Player extends Entity{
 					animations[j][i] = img.getSubimage(i * 64, j * 40, 64, 40); //gets the image from each column on row j
 	}
 	
-	public void loadLvlData(int[][] lvlData) {
+	public void loadLvlData(int[][] lvlData) { //loads the levels data, temporary
 		this.lvlData = lvlData;
 		if(!IsEntityOnFloor(hitBox, lvlData)) { //should fall down as we start the game
 			inAir = true;

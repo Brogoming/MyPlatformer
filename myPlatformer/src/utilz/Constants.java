@@ -1,6 +1,18 @@
 package utilz;
 
+import main.Game;
+
 public class Constants { //changes animation based on player action 
+	
+	public static class UI{
+		public static class Buttons{
+			public static final int B_WD = 140; //b width default = 140 px
+			public static final int B_HD = 56; //b height default = 56 px
+			public static final int B_WIDTH = (int) (B_WD * Game.SCALE); //width scale
+			public static final int B_HEIGHT = (int) (B_HD * Game.SCALE); //height scale
+		}
+	}
+	
 	public static class Directions { //determines what direction the player is moving based on their input
 		public static final int LEFT = 0;
 		public static final int UP = 1;

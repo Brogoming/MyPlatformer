@@ -16,11 +16,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>res/level_one_data.png</name>
-			<type>1</type>
-			<locationURI>PARENT-2-WORKSPACE_LOC/Downloads/level_one_data.png</locationURI>
-		</link>
-		<link>
 			<name>res/outside_sprites.png</name>
 			<type>1</type>
 			<location>C:/Users/kotag/Downloads/PlatformerTutorial-ep09/PlatformerTutorial/res/outside_sprites.png</location>
