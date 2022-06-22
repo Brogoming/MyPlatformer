@@ -5,11 +5,31 @@ import main.Game;
 public class Constants { //changes animation based on player action 
 	
 	public static class UI{
-		public static class Buttons{
+		public static class Buttons{ //menu buttons
 			public static final int B_WD = 140; //b width default = 140 px
 			public static final int B_HD = 56; //b height default = 56 px
 			public static final int B_WIDTH = (int) (B_WD * Game.SCALE); //width scale
 			public static final int B_HEIGHT = (int) (B_HD * Game.SCALE); //height scale
+		}
+		
+		public static class PauseButtons{ //pause buttons
+			public static final int SOUND_SIZE_DEFAULT = 42; //x and y are 42 by 42
+			public static final int SOUND_SIZE = (int) (SOUND_SIZE_DEFAULT * Game.SCALE); //SOUND scale
+
+		}
+		
+		public static class URMButtons{
+			public static final int URM_SIZE_DEFAULT = 56;
+			public static final int URM_SIZE = (int)(URM_SIZE_DEFAULT * Game.SCALE);
+		}
+		
+		public static class VolButtons{
+			public static final int VOL_WIDTH_DEFAULT = 28;
+			public static final int VOL_HEIGHT_DEFAULT = 44;
+			public static final int SLIDER_WIDTH_DEFAULT = 215;
+			public static final int VOL_WIDTH = (int)(VOL_WIDTH_DEFAULT * Game.SCALE);
+			public static final int VOL_HEIGHT = (int)(VOL_HEIGHT_DEFAULT * Game.SCALE);
+			public static final int SLIDER_WIDTH = (int)(SLIDER_WIDTH_DEFAULT * Game.SCALE);
 		}
 	}
 	
